@@ -18,6 +18,7 @@ from fastapi.testclient import TestClient
 from query_intelligence.api.app import create_app
 from query_intelligence.contracts import AnalyzeRequest, MAX_QUERY_LENGTH, PipelineRequest
 from query_intelligence.external_data.sync import _safe_zip_extractall
+from query_intelligence.service import QueryIntelligenceService
 from scripts.llm_response import _MAX_REQUEST_BODY_BYTES
 
 
@@ -68,9 +69,6 @@ class _NoopRetrievalPipeline:
             "analysis_summary": {},
             "debug_trace": {"candidate_count": top_k, "after_dedup": 0, "top_ranked": []},
         }
-
-
-from query_intelligence.service import QueryIntelligenceService
 
 
 def _make_demo_client() -> TestClient:
@@ -277,7 +275,7 @@ def test_llm_response_service_handler_rejects_oversized_body(tmp_path: Path) -> 
     assert "400" in status_line, f"Expected 400, got: {status_line!r}"
 
     # Also verify the response body contains the 'too large' message
-    assert b"too large" in response_bytes.lower() or b"too large" in response_bytes
+    assert b"too large" in response_bytes.lower()
 
 
 # ---------------------------------------------------------------------------
