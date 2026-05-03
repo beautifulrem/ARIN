@@ -2,7 +2,7 @@
 
 ## Project Mission & Boundaries
 
-ARIN Query Intelligence turns a user’s financial question into evidence artifacts that downstream systems can analyze and answer from. The owned core is NLU plus Retrieval: `nlu_result` captures normalized query, product type, intents, topics, entities, missing slots, risk flags, and source plan; `retrieval_result` captures executed sources, documents, structured data, coverage, warnings, ranking debug traces, and `analysis_summary`.
+FinSight turns a user’s financial question into evidence artifacts that downstream systems can analyze and answer from. The owned core is Query Intelligence: `nlu_result` captures normalized query, product type, intents, topics, entities, missing slots, risk flags, and source plan; `retrieval_result` captures executed sources, documents, structured data, coverage, warnings, ranking debug traces, and `analysis_summary`.
 
 Query Intelligence does not write final natural-language investment answers, does not produce deterministic buy/sell decisions, and does not own frontend, account, or scheduling systems. Downstream consumers such as `sentiment/` and `scripts/llm_response.py` must consume upstream artifacts instead of re-inferring intent, target entities, or source plan.
 
